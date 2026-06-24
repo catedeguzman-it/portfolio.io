@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Catherine De Guzman — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --gray-50: #f8f8f6;
+    --gray-100: #f1f0ec;
+    --gray-200: #e2e1db;
+    --gray-400: #888780;
+    --gray-600: #5f5e5a;
+    --gray-900: #1a1a18;
+    --accent: #185FA5;
+    --accent-light: #E6F1FB;
+    --accent-mid: #378ADD;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--gray-900);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--gray-200);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--gray-900);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  section + section { border-top: 0.5px solid var(--gray-200); }
+
+  /* HERO */
+  #hero {
+    padding: 7rem 2rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--gray-600);
+    max-width: 540px;
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.18s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: #0C447C; border-color: #0C447C; }
+  .btn-outline {
+    background: transparent;
+    color: var(--gray-900);
+    border: 1px solid var(--gray-300, #ccc);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION HEADINGS */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+    color: var(--gray-900);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--gray-600); margin-bottom: 1rem; font-size: 15px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+  .info-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 1rem;
+    background: var(--gray-50);
+    border: 0.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+  .info-chip strong { color: var(--gray-900); font-weight: 500; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-card {
+    background: var(--gray-50);
+    border: 0.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .skill-card-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--white);
+    border: 0.5px solid var(--gray-200);
+    color: var(--gray-600);
+  }
+  .tag.accent { background: var(--accent-light); border-color: #B5D4F4; color: #0C447C; }
+  .tag.teal { background: var(--teal-light); border-color: #9FE1CB; color: var(--teal); }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+  .project-card {
+    border: 0.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    background: var(--white);
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent-mid); }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+  .project-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--gray-900);
+    letter-spacing: -0.3px;
+  }
+  .project-number { font-size: 11px; font-weight: 600; color: var(--gray-400); letter-spacing: 1px; }
+  .project-desc { font-size: 14px; color: var(--gray-600); margin-bottom: 1.1rem; line-height: 1.65; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.1rem; }
+  .stack-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--accent-light);
+    color: #0C447C;
+    border: 0.5px solid #B5D4F4;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .project-link:hover { color: #0C447C; }
+  .project-links { display: flex; gap: 1.25rem; }
+
+  /* RESUME */
+  #resume { text-align: center; background: var(--gray-50); border-radius: var(--radius); padding: 4rem 2rem; }
+  #resume .section-title { margin-bottom: 0.75rem; }
+  #resume p { color: var(--gray-600); font-size: 15px; max-width: 420px; margin: 0 auto 2rem; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .contact-info p { color: var(--gray-600); font-size: 15px; margin-bottom: 1.5rem; }
+  .contact-link-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+  }
+  .contact-link-row:hover { color: #0C447C; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 0.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--gray-900);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form textarea { resize: vertical; min-height: 110px; }
+  .form-sent { display: none; font-size: 14px; color: var(--teal); font-weight: 500; margin-top: 0.5rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--gray-200);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .about-grid, .contact-grid, .skills-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    section { padding: 3.5rem 1rem; }
+    #hero { padding: 4rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">C.D.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <p class="eyebrow">Full Stack Developer</p>
+  <h1 class="hero-name">Catherine<br><span>De Guzman.</span></h1>
+  <p class="hero-tagline">I build cloud-native web and mobile applications — from database to deployment. Currently open to junior full stack roles in the Philippines and remote.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="#projects">View my work</a>
+    <a class="btn btn-outline" href="#contact">Get in touch</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">About me</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a Software Development graduate with hands-on experience in full-stack development, cloud technologies, and SAP Basis through training and internship experience at Accenture Academy.</p>
+      <p>I'm adaptable, detail-oriented, and a fast learner. Building cloud-native applications and business technology solutions has sharpened my problem-solving and analytical thinking.</p>
+      <p>I value growth, collaboration, and maintaining a positive work ethic. I'm eager to build my career in tech while continuing to level up both technically and professionally.</p>
+    </div>
+    <div class="about-sidebar">
+      <div class="info-chip">
+        🎓 <div><strong>Software Development</strong><br>Fresh Graduate</div>
+      </div>
+      <div class="info-chip">
+        🏢 <div><strong>Accenture Academy</strong><br>Internship · Cloud & SAP</div>
+      </div>
+      <div class="info-chip">
+        📍 <div><strong>Philippines</strong><br>Open to remote roles</div>
+      </div>
+      <div class="info-chip">
+        💼 <div><strong>Available</strong><br>Actively looking for opportunities</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <p class="section-label">What I work with</p>
+    <h2 class="section-title">Skills</h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <p class="skill-card-title">Frontend</p>
+      <div class="skill-tags">
+        <span class="tag accent">Next.js</span>
+        <span class="tag accent">React.js</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title">Backend</p>
+      <div class="skill-tags">
+        <span class="tag accent">Node.js</span>
+        <span class="tag accent">REST APIs</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Java</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title">Databases</p>
+      <div class="skill-tags">
+        <span class="tag teal">MongoDB</span>
+        <span class="tag teal">Supabase</span>
+        <span class="tag teal">SQL</span>
+        <span class="tag teal">Firebase</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title">Cloud & DevOps</p>
+      <div class="skill-tags">
+        <span class="tag accent">Docker</span>
+        <span class="tag accent">CI/CD</span>
+        <span class="tag">Prometheus</span>
+        <span class="tag">Grafana</span>
+        <span class="tag">Render</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title">Mobile</p>
+      <div class="skill-tags">
+        <span class="tag">Android Studio</span>
+        <span class="tag">Java</span>
+        <span class="tag">XML</span>
+        <span class="tag">Firebase</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title">Enterprise & Tools</p>
+      <div class="skill-tags">
+        <span class="tag">SAP Basis</span>
+        <span class="tag">Git & GitHub</span>
+        <span class="tag">Linux</span>
+        <span class="tag">ClickUp</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <p class="section-label">Selected work</p>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-list reveal">
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-name">BrainBytes</h3>
+        <span class="project-number">01</span>
+      </div>
+      <p class="project-desc">A cloud-native AI tutoring platform where users interact with an AI assistant, maintain chat history, manage sessions, and monitor system performance through a full observability stack.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Next.js</span>
+        <span class="stack-tag">Node.js</span>
+        <span class="stack-tag">MongoDB</span>
+        <span class="stack-tag">Groq API</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Prometheus</span>
+        <span class="stack-tag">Grafana</span>
+        <span class="stack-tag">CI/CD</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/catedeguzman-it/brain_bytes" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-name">FinMark</h3>
+        <span class="project-number">02</span>
+      </div>
+      <p class="project-desc">A functional prototype for a fintech platform focused on modernizing legacy systems with a serverless-first architecture, featuring user authentication and cloud-based data synchronization.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Next.js</span>
+        <span class="stack-tag">Supabase</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">SQL</span>
+        <span class="stack-tag">Vercel</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/catedeguzman-it/finmark" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-name">SnapShop Quick Finds</h3>
+        <span class="project-number">03</span>
+      </div>
+      <p class="project-desc">An Android mobile shopping application that enables users to browse products with an intuitive, user-friendly interface built natively for Android.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Android Studio</span>
+        <span class="stack-tag">Java</span>
+        <span class="stack-tag">XML</span>
+        <span class="stack-tag">Firebase</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/catedeguzman-it/mySnapShop" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-name">TalaTalk</h3>
+        <span class="project-number">04 · Capstone</span>
+      </div>
+      <p class="project-desc">A mobile communication platform designed to improve parent-teacher collaboration at Baka-bakahan Elementary School, enabling efficient exchange of updates, announcements, and school information.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Android Studio</span>
+        <span class="stack-tag">Java</span>
+        <span class="stack-tag">Firebase</span>
+        <span class="stack-tag">Material Design</span>
+        <span class="stack-tag">XML</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/catedeguzman-it/talatalk" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" style="background: var(--gray-50); border: 0.5px solid var(--gray-200); border-radius: var(--radius); text-align: center;">
+  <div class="reveal">
+    <p class="section-label">Download</p>
+    <h2 class="section-title" style="margin-bottom: 0.75rem;">My résumé</h2>
+    <p style="color: var(--gray-600); font-size: 15px; max-width: 420px; margin: 0 auto 2rem;">A full overview of my education, experience, and technical skills — ready to share with employers.</p>
+    <a class="btn btn-primary" href="Catherine De Guzman-Resume.pdf" download>↓ Download CV (PDF)</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Let's work together</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <p>I'm currently open to junior full stack and web development roles — locally and remotely. Feel free to reach out for opportunities, collaborations, or just to say hello.</p>
+      <a class="contact-link-row" href="mailto:catherinedeguzman.work@gmail.com">✉ catherinedeguzman.work@gmail.com</a>
+      <a class="contact-link-row" href="https://www.linkedin.com/in/catedeguzman/" target="_blank">✉ linkedin.com/in/catedeguzman</a>
+    </div>
+    <div class="contact-form">
+      <input type="text" id="cf-name" placeholder="Your name" />
+      <input type="email" id="cf-email" placeholder="Your email" />
+      <textarea id="cf-msg" placeholder="Your message"></textarea>
+      <button class="btn btn-primary" onclick="handleSend()" style="align-self: flex-start;">Send message</button>
+      <p class="form-sent" id="form-sent">✓ Thanks! I'll get back to you soon.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by Catherine De Guzman · 2025</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => io.observe(r));
+
+  function handleSend() {
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const msg = document.getElementById('cf-msg').value.trim();
+    if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+    document.getElementById('form-sent').style.display = 'block';
+    document.getElementById('cf-name').value = '';
+    document.getElementById('cf-email').value = '';
+    document.getElementById('cf-msg').value = '';
+  }
+</script>
+</body>
+</html>
