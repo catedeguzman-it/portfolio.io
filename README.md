@@ -18,27 +18,32 @@ I am an aspiring software developer who enjoys creating applications that solve 
 ## 📁 Contents
 
 - `index.html` - Main portfolio website
-- `resume.pdf` (or your resume file name) - My professional resume
+- `Catherine De Guzman-Resume.pdf` - My professional resume
 
 ## 🌐 View My Portfolio
 
-[Live link to your portfolio if hosted - e.g., GitHub Pages, personal domain]
+[https://catedeguzman-it.github.io/portfolio/]
 
 ## 📚 Certifications
 
-- [Certification Name] - [Year]
-- [Certification Name] - [Year]
+- SAP Certified - Implementation Consultant-End-to-End Business Processes for SAP Business Suite - 2026
+- IBM - People & Soft Skills-Essential for Professional Success - 2026
 
 ## 💼 Experience
 
-[Brief overview of your professional experience, or link to resume]
+I am a technology professional with over five years of experience in project coordination, customer solutions, operational governance, and cross-functional collaboration. Throughout my career at Sutherland, I managed end-to-end initiatives, monitored project milestones, analyzed performance metrics, resolved complex issues, and supported process improvements within enterprise environments.
+
+Alongside my professional experience, I pursued a Bachelor of Science in Information Technology and gained hands-on exposure to software development, REST API integration, Agile methodologies, and enterprise systems. I also completed SAP Basis training at Accenture, where I developed foundational knowledge in SAP business processes, workflows, and enterprise technology environments.
+
+I am passionate about bridging business operations and technology to deliver efficient, user-focused solutions. My goal is to continue growing my career in software engineering, cloud technologies, SAP, and enterprise digital transformation.
+
 
 ## 📫 Get In Touch
 
-- **Email:** [your email]
-- **LinkedIn:** [your LinkedIn profile]
-- **GitHub:** [your GitHub profile]
-- **Website/Portfolio:** [link if applicable]
+- **Email:** [catherinedeguzman.work@gmail.com]
+- **LinkedIn:** [https://www.linkedin.com/in/catedeguzman/]
+- **GitHub:** [https://github.com/catedeguzman-it/portolio/]
+- **Website/Portfolio:** [https://catedeguzman-it.github.io/portfolio/]
 
 ## 📝 License
 
